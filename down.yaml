@@ -5,7 +5,7 @@
 
   - name: Ansible hello world
     ansible.builtin.debug:
-      msg: Hello from ansible in up.yaml
+      msg: Hello from ansible in down.yaml
   - name: stop mysql
     ansible.builtin.shell: sudo service mysql stop > /tmp/mysqldown.txt
     args:
