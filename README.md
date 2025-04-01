@@ -11,7 +11,7 @@ ansible-playbook up.yaml
 To access database:
 
 ```bash
-sudo mysql -u root
+mysql -u root -h 127.0.0.1
 ```
 
 To cleanup
