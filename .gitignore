@@ -171,3 +171,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 flyway.tar.gz
+flyway.tar.gz
