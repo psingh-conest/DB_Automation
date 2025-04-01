@@ -1,1 +1,1 @@
-CREATE DATABASE subscriptions;
+CREATE DATABASE subscriber_db;

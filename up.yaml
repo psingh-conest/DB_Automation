@@ -19,4 +19,28 @@
     args:
       creates: migrations/finished/createdb.sql
 
+  - name: Install Flyway
+    ansible.builtin.shell: |
+      curl -L https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/10.5.0/flyway-commandline-10.5.0-linux-x64.tar.gz -o flyway.tar.gz
+      tar -xzf flyway.tar.gz
+      sudo mv flyway-10.5.0 /usr/local/flyway
+      sudo ln -s /usr/local/flyway/flyway /usr/local/bin/flyway
+    args:
+      creates: /usr/local/bin/flyway
+
+  - name: Configure Flyway
+    ansible.builtin.copy:
+      dest: /usr/local/flyway/conf/flyway.conf
+      content: |
+        flyway.url=jdbc:mysql://127.0.0.1:3306/subscriber_db
+        flyway.user=root
+        flyway.password=
+        flyway.schemas=public
+        flyway.locations=filesystem:migrations
+
+  - name: Apply migrations using Flyway
+    ansible.builtin.shell: /usr/local/flyway/flyway -locations=filesystem:/workspaces/DB_Automation/migrations migrate
+    args:
+      chdir: /usr/local/flyway
+
 
